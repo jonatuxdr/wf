@@ -1,22 +1,26 @@
 <?php
 
-$booleanTrue;
-$booleanFalse;
+$booleanTrue = true;
+$booleanFalse = false;
 
-$int;
+$int = 1;
 
-$float;
+$float = 1.2;
 
-$integer;
+$integer = 1;
 
-$double;
+$double = 1.2;
 
-$string;
+$string = "this is a string";
 
-$array;
+$array = ['Hello', 1, true];
 
-$doubleDimenssionArray;
+$doubleDimenssionArray = [[1.2,5.3,9.4], [1,5]];
 
-$associativeArray;
+$associativeArray = [ 
+	"proprety1" => [1,'Hello1'],
+	"prop2" => [2, true],
+	"prop3" => [2,5]
+];
 
-$null;
+$null = null;
