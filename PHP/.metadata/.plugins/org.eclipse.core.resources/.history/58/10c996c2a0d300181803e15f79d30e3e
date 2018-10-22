@@ -1,0 +1,24 @@
+<?php
+
+/*
+//new for creating a new objetct
+
+$date = new DateTime('first day of current month at midnight');
+$lastDate = new DateTime('last day of current month');
+
+$date->add(new DateInterval('+1day'));
+
+//print a specific date -> Y as 4 digits, m as 2 digits, d as 2 digits
+//H as 2 digits, i (minutes) as 2 digits, s as 2 digits
+//object = container for function
+
+$dateAsString->format('Y-m-d H:i:s');
+
+echo $date;*/
+
+function getAllMondaysOfMonth($year, $month) {
+    $date = new DateTime($year, $month);
+    var_dump($date);
+}
+
+getAllMondaysOfMonth(2016, 05);

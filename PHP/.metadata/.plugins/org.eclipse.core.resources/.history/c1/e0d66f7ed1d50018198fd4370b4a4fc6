@@ -1,0 +1,16 @@
+<?php
+
+require_once __DIR__.'/DimensionalMath/Distance/DistanceCalculation.php';
+require_once __DIR__.'/DimensionalMath/Vector/AngleCalculation.php';
+
+use function DimensionalMath\Distance\threeDimensionDistance;
+use function DimensionalMath\Vector\getVectorAngle;
+
+$distance = dCalc\threeDimensionDistance(
+    [1, 1, 1],
+    [2, 2, 2]
+);
+
+$angle = aCalc\vectorAngle([1, 6], [3, 12]);
+
+$sub = subSquare(2, 5);
