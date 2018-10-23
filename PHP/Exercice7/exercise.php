@@ -16,7 +16,6 @@ function arrayDivide(array $numArray, int $denom) : array {
         try {
             //echo 3;
             $result[] = divide($num, $denom);
-            
             //echo 4;
         } catch (RuntimeException $exception) {
             echo $exception->getMessage();
