@@ -1,0 +1,29 @@
+CREATE DB name;
+
+USE name;
+
+CREATE TABLE project
+(
+	id primary key int auto_increment,
+	projects varchar(255),
+	project_status varchar(255),
+	category varchar(255)
+);
+
+CREATE TABLE category
+(
+	id primary key int auto_increment,
+	category varchar(255)
+);
+
+CREATE TABLE category_project
+(
+	id primary key int auto_increment,
+	Foreign Key : projectid,
+	Foreign Key : categoryid
+);
+
+USE a PDO connection to the DB
+
+snake_case -> keep it for index(array, translation index)
+camelCase -> for the variables, functions, class name
