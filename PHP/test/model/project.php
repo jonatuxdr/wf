@@ -13,8 +13,9 @@ function getAllProjects() {
     //Special in POO
     
     global $connection;
-    $statement = 'SELECT * FROM Project';
+    $statement = 'SELECT p.*, s.label FROM Project AS p INNER JOIN Status AS s ON p.statusId = s.id';
     $projects = $connection->query($statement);
+    
     
     //var_dump($projects);
     //container ???????????????????
@@ -26,5 +27,18 @@ function getAllProjects() {
         throw new Exception($connection->errorCode());
         //errorCode() see the errorCode to debug it !
     }
+    
+    foreach ($projects as $key => $project){
+        $statement = 'SELECT c.label FROM Category as c INNER JOIN projectCategory as pc ON c.id = pc.categoryId WHERE pc.projectId = '. $project['id'];
+        $categories = $connection->query($statement)->fetchAll();
+        if ($categories === false) {
+            throw new Exception($connection->errorCode());
+        }
+        //
+        $project['categories'] = $categories;
+        //
+        $project[$key] = $project;
+    }
+    
     return $projects;
 }

@@ -1,4 +1,7 @@
 <?php 
+
+//The model part
+
 //Load configuration, require does not accept to return something
 $config = include __DIR__ . '/../config/config.php';
 //Load configuration, require does not accept to return something
@@ -18,7 +21,14 @@ try {
     exit;
 }
 
-var_dump($projects->fetchAll());
+
+//The view part
+
+
+require __DIR__ . '/../view/homepage.php';
+
+
+//var_dump($projects->fetchAll());
 
 //fetchAll() => get all the result an transform as an array !!!!!!!!!!
 
