@@ -52,8 +52,11 @@ INSERT INTO Status(label, description) VALUES
     ('Out of budget','Lorem ipsum');
     
 INSERT INTO Project(title, description, image, pubDate, statusId) VALUES
-	('wf3m', 'Lorem ipsum', 'img/myPicture1.png', NOW(), 1),
-    ('In progress', 'Lorem ipsum', 'img/myPicture1.png', NOW(), 3);
+	('wf3m', 'Lorem ipsum', 'img/myPicture1.JPG', NOW(), 1),
+    ('In progress', 'Lorem ipsum', 'img/myPicture2.jpg', NOW(), 3),
+    ('Out of budget', 'Lorem ipsum asset', 'img/myPicture3.jpg', NOW(), 1),
+    ('Analysis', 'Lorem ipsum asset me to the end', 'img/myPicture4.jpg', NOW(), 2),
+    ('Blocked', 'Lorem ipsum asset me to the end blablablablablablabla', 'img/myPicture5.jpg', NOW(), 3);
     
 INSERT INTO projectCategory VALUES
 	(1,1),

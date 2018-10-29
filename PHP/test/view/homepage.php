@@ -3,11 +3,8 @@
 // var_dump($projects->fetchAll());
 
 // var_dump($arrayProjects);
-$projects = $projects->fetchAll();
-
-//var_dump($categories);
-//var_dump($projects);
-
+// var_dump($categories);
+// var_dump($projects);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +34,8 @@ body {
 </style>
 </head>
 <body>
+
+	<?php include __DIR__. '/../view/header.php';?>
 
 	<!-- <table>
 		<tr>
@@ -73,57 +72,64 @@ foreach ($projects as $project) {
 		<div class="card  col-sm-3">
 			<img src="<?php echo $project['image']?>" alt="Card image cap"
 				class="img-thumbnail" alt="Responsive image">
-					<?php 
-					/*
-					 switch ($i) {
-                        case 0:
-                        echo "i égal 0";
-                    break;
-                        case 1:
-                        echo "i égal 1";
-                        break;
-                        case 2:
-                        echo "i égal 2";
-                        break;
-                    }
-					 * */
-					switch ($project['label']){
-					    case 'In progress':
-					        ?>
+					<?php
+    /*
+     * switch ($i) {
+     * case 0:
+     * echo "i égal 0";
+     * break;
+     * case 1:
+     * echo "i égal 1";
+     * break;
+     * case 2:
+     * echo "i égal 2";
+     * break;
+     * }
+     */
+    switch ($project['label']) {
+        case 'In progress':
+            ?>
 					       <span class="badge badge-success"><?php echo $project['label']?></span>
 					       <?php break;?>
-					    <?php 
-                        case 'Analysis':
-                            ?>
+					    <?php
+
+        case 'Analysis':
+            ?>
                             <span class="badge badge-primary"><?php echo $project['label']?></span>
                             <?php break;?>
-                        <?php 
-                        case 'Blocked':
-					        ?>
+                        <?php
+
+        case 'Blocked':
+            ?>
 					       <span class="badge badge-danger"><?php echo $project['label']?></span>
 					       <?php break;?>
 
-					<?php 
-					}
-					?>
+					<?php
+    }
+    ?>
 
 			<div class="card-body">
 				<h5 class="card-title"><?php echo $project['title']?></h5>
 				<p class="card-text"><?php echo $project['description']?></p>
 			</div>
 			<div class="card-footer">
-			<?php 
-			$categories = [];
-			foreach ($project['categories'] as $category) {
-			    $categories[] = $category['label'];
-			}
-			$categories = implode(' | ', $categories);
-			?>
-				<small class="text-muted"><?php echo $project['pubDate']?></small>
-				 <span class="badge badge-danger"><?php echo $categories?></span>
+			<?php
+    $categories = [];
+    foreach ($project['categories'] as $category) {
+        $categories[] = $category['label'];
+    }
+    $categories = implode(' | ', $categories);
+    ?>
+				<small class="text-muted"><?php echo $project['pubDate']?></small> <span
+					class="badge badge-danger"><?php echo $categories?></span>
 			</div>
 		</div>
-
+		<?php
+    /*
+     * <<<EOT EOT; -> ça remplace "", pour les long textes
+     * <<<AOT AOT;
+     */
+    ?>
    <?php
     /*
      * echo
@@ -170,5 +176,10 @@ id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
 
+	<!-- Info additionnel
+
+GDPR !!!!!!!!!!!!!!!!!!!!!
+
+ -->
 </body>
 </html>

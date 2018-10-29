@@ -27,7 +27,6 @@ try {
 
 require __DIR__ . '/../view/homepage.php';
 
-
 //var_dump($projects->fetchAll());
 
 //fetchAll() => get all the result an transform as an array !!!!!!!!!!

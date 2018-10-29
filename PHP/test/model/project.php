@@ -14,7 +14,7 @@ function getAllProjects() {
     
     global $connection;
     $statement = 'SELECT p.*, s.label FROM Project AS p INNER JOIN Status AS s ON p.statusId = s.id';
-    $projects = $connection->query($statement);
+    $projects = $connection->query($statement)->fetchAll();
     
     
     //var_dump($projects);
@@ -37,7 +37,7 @@ function getAllProjects() {
         //
         $project['categories'] = $categories;
         //
-        $project[$key] = $project;
+        $projects[$key] = $project;
     }
     
     return $projects;
