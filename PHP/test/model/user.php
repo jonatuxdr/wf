@@ -48,16 +48,25 @@ function createUser(string $nickname, string $password, int $roleId = 1): int
 // ? array => return an array or null
 function findUserByNickname(string $nickname): ?array
 {
+    /**
+     * @var PDO $connection
+     */
     global $connection;
 
-    $query = 'SELECT * FROM user WHERE nickname = "' . $nickname . '" ';
+    // This is a better way to do if we have inputs in our SQL query !!!! This will avoid an SQL injection like DROP DATABASE
+    $preparedQuery = $connection->prepare('SELECT * FROM user WHERE nickname = :name');
+    $preparedQuery->bindValue('name', $nickname);
+    $result = $preparedQuery->execute();
+
+    //$query = 'SELECT * FROM user WHERE nickname = "' . $nickname . '" ';
     // ou alors je peux mettre $query = sprintf('SELECT * FROM user WHERE nickname ="%s", $nickname ');    
-    $result = $connection->query($query);
+    //$result = $connection->query($query);
 
     if ($result === false) {
         throw new RuntimeException(print_r($connection->errorInfo(), true));
     }
-    $result = $result->fetch();
+    $result = $preparedQuery->fetch();
+    //$result = $result->fetch();
     if ($result) {
         return $result;
         var_dump($result);

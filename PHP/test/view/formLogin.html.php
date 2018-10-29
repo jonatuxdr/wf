@@ -13,10 +13,12 @@
 	<?php include __DIR__ . '/header.php';?>
 	
 	<?php
-
+	
 if (isset($success) && $success) {
     $success = '<p class="alert alert-success"> You are logged in !</p>';
-} else {
+}
+
+if (isset($error) && $error) {
     $error = '<p class="alert alert-danger"> You are NOT logged in !</p>';
 }
 
