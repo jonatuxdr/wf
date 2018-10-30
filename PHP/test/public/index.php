@@ -1,50 +1,38 @@
 <?php 
 
-//The model part
+//Create a mapping between an url and a controller, IT'S URL (ADDRESSING) NOT PATH !!!!!!!!!!!!!!!!!
 
-//Load configuration, require does not accept to return something
-$config = include __DIR__ . '/../config/config.php';
-//Load configuration, require does not accept to return something
+$suffix = __DIR__ . '/../controller/';
+$routing = [
+    $suffix . 'index.php' => ['/', ''],
+    $suffix . 'register.php' => ['/register.php'],
+    $suffix . 'login.php' => ['/login.php'],
+    $suffix . 'logout.php' => ['/logout.php'],
+    $suffix . 'random.php' => ['/random.php'],
+    $suffix . 'createProject.php' => ['/createProject.php']
+];
 
-//Require the connection
-//require __DIR__ . '/../model/connection.php'; // <= ????????????????????? HERE IT NOT THE RIGHT PLACE !!!!!!!!!
-//Require the connection
+$url = $_SERVER['REQUEST_URI'];
 
-//Initilize the connection and getAllProjects()
-require_once  __DIR__ . '/../model/project.php';
-
-try {
-    $projects = getAllProjects();
-    //from return $projects from project.php
-} catch (Exception $e) {
-    echo 'An error occured with code : ' . $e->getMessage();
-    exit;
+if (substr($url, 0, strlen('/index.php')) == '/index.php') {
+    $url = substr($url, strlen('/index.php'));
 }
 
+if (strpos($url, '?')) {
+    $url = substr($url, 0, strpos($url, '?'));
+}
 
-//The view part
+//SELECT THE CONTROLLER ITSELF
+$config = include __DIR__ . '/../config/config.php';
 
+if(session_status() !== PHP_SESSION_ACTIVE){
+    session_start();
+}
 
-require __DIR__ . '/../view/homepage.php';
+foreach ($routing as $controller => $urls){
+    if (in_array($url, $urls)) {
+        require_once $controller;
+    }
+}
 
-//var_dump($projects->fetchAll());
-
-//fetchAll() => get all the result an transform as an array !!!!!!!!!!
-
-//Easy Maintenance : MVC
-//include __DIR__ . '/../model/articles.php';
-//include __DIR__ . '/../view/article_list.php';
-//Easy Maintenance : MVC
-
-//-------------------------------RESUME------------------------------
-
-// go in config and return config
-// require project.php
-    // require connection.php
-        //create a connection
-    // define getAllProjects() function
-// call getAllProjects
-    // send a query
-    // return the result
-
-//--------------------------------RESUME-----------------------------
+session_write_close();

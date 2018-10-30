@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+	Options +FollowSymlinks
+	#C'est un module Apache pour configurer les query qui rentre dans mon serveur Apache
+	RewriteEngine On
+	#Condition = if it's not a file redirect the url to index.php
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ /index.php [QSA,L]
+	#Query String Append Load
+</IfModule>

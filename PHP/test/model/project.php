@@ -2,6 +2,7 @@
 
 require __DIR__ . '/connection.php'; //HERE IS THE RIGHT PLACE !!!!!!!!!!!!
 
+// CRUD - READ
 function getAllProjects() {
     //Now we create a query
     //@var is a PDO object $connection
@@ -41,4 +42,28 @@ function getAllProjects() {
     }
     
     return $projects;
+}
+
+//CRUD CREATE
+function createProject(string $title, string $description, string $image, string $pubDate, string $status) {
+    global $connection;
+    
+    $preparedQuery = $connection->prepare('INSERT INTO project (title, description, image, pubDate, status) VALUE (:title, :description, :image, :pubDate, :status)');
+    $preparedQuery->bindValue('title', $title);
+    $preparedQuery->bindValue('description', $description);
+    $preparedQuery->bindValue('image', $image);
+    $preparedQuery->bindValue('pubDate', $pubDate);
+    $preparedQuery->bindValue('status', $status);
+    $result = $preparedQuery->execute();
+    
+    if ($result === false) {
+        throw new RuntimeException(print_r($preparedQuery->errorInfo(), true));
+    }
+    $result = $preparedQuery->fetch();
+    
+    if ($result) {
+        return $result;
+        var_dump($result);
+    }
+    return null;
 }

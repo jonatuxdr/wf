@@ -74,4 +74,58 @@ function findUserByNickname(string $nickname): ?array
     return null;
 }
 
+/**
+ * Log the user with session
+ * 
+ * Will store the user information in the session superglobal. Return true on success, false on failure.
+ * 
+ * @param array $user
+ * @return bool
+ */
+function loginUser(array $user) : bool {
+    //It's done before the controller execution !!!!!!!
+    
+    /*if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }*/
+    $_SESSION['user'] = $user;
+    //var_dump($user);
+    return true;
+}
+
+/**
+ * Get current user
+ * 
+ * Return the current logged user if exist in the session. If not, return null
+ * 
+ * @return array|NULL
+ */
+
+function getCurrentUser() : ?array {
+    /*if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }*/
+    return $_SESSION['user'] ?? null;
+}
+
+/**
+ * Logout
+ * 
+ * Remove the session storage. Return true on success, false on failure
+ * 
+ * @return bool
+ */
+
+//PHP_SESSION_ACTIVE => it's a constant, accessible in the all application, define is use to define a constant and in this constant PHP_SESSION_ACTIVE = 2 !!!
+function logout() : bool {
+    /*if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }*/
+    $_SESSION =[];
+    session_destroy();
+    
+    return true;
+}
+
+
 ?>

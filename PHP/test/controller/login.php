@@ -1,6 +1,6 @@
 <?php 
 
-$config = include __DIR__ . '/../config/config.php';
+//$config = include __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../model/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -15,6 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     if ($user && $_POST['password'] == $user['password']) {
+        //Fonction loginUser
+        loginUser($user);
+        //Fonction loginUser
         $success = true;
     } else {
         $error = true;
@@ -23,4 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 include __DIR__ . '/../view/formLogin.html.php';
+
+if (session_status() === PHP_SESSION_ACTIVE) {
+    session_write_close();
+}
+
 ?>

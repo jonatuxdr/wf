@@ -40,6 +40,9 @@ if (! empty($errors['password2'])) {
     $password2Error .= '</ul>';
 }
 
+$rest = substr("abcdef", -2);    // retourne "f"
+var_dump($rest);
+
 // Null coalition
 // if the left operand exist => use it and if the right operand exist use the right
 $nickname = $_POST['nickname'] ?? '';

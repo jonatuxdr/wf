@@ -24,7 +24,6 @@ if (isset($error) && $error) {
 
 ?>
 	
-	
 	<?php
 echo $success ?? '';
 echo $error ?? '';
