@@ -17,7 +17,7 @@ if (! empty($errors['title'])) {
     foreach ($errors['title'] as $errorText) {
         $titleError .= '<li>' . $errorText . '</li>';
     }
-    $nicknameError .= '</ul>';
+    $titleError .= '</ul>';
 }
 
 $descriptionError = '';
@@ -80,10 +80,10 @@ if (! empty($errors['status'])) {
 		<div class="form-group">
 			<label for="exampleFormControlSelect1">Status :</label> <select
 				class="form-control" id="status" name="status">
-				<option>Analysis</option>
-				<option>Out of budget</option>
-				<option>Blocked</option>
-				<option>In progress</option>
+				<option value="1">Analysis</option>
+				<option value="2">Out of budget</option>
+				<option value="3">Blocked</option>
+				<option value="4">In progress</option>
 			</select>
 		</div>
 

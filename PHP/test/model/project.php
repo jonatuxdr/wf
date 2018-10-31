@@ -48,22 +48,26 @@ function getAllProjects() {
 function createProject(string $title, string $description, string $image, string $pubDate, string $status) {
     global $connection;
     
-    $preparedQuery = $connection->prepare('INSERT INTO project (title, description, image, pubDate, status) VALUE (:title, :description, :image, :pubDate, :status)');
+    $preparedQuery = $connection->prepare('INSERT INTO project (title, description, image, pubDate, statusId) VALUE (:title, :description, :image, :pubDate, :status)');
+    
+    $date = null;
+    if ($pubDate) {
+        $date = (new DateTime())->format('Y-m-d H:i:s');
+    }
+    
     $preparedQuery->bindValue('title', $title);
     $preparedQuery->bindValue('description', $description);
     $preparedQuery->bindValue('image', $image);
-    $preparedQuery->bindValue('pubDate', $pubDate);
+    $preparedQuery->bindValue('pubDate', $date);
     $preparedQuery->bindValue('status', $status);
     $result = $preparedQuery->execute();
     
     if ($result === false) {
         throw new RuntimeException(print_r($preparedQuery->errorInfo(), true));
     }
-    $result = $preparedQuery->fetch();
+
+    $projectId = $connection->lastInsertId();
     
-    if ($result) {
-        return $result;
-        var_dump($result);
-    }
-    return null;
+    return $projectId;
+
 }
